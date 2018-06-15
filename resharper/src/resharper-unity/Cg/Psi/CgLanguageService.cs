@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using JetBrains.ReSharper.Plugins.Unity.Cg.CodeStyle;
 using JetBrains.ReSharper.Plugins.Unity.Cg.Psi.Parsing;
 using JetBrains.ReSharper.Plugins.Unity.Cg.Psi.Parsing.TokenNodeTypes;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.CodeStyle;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Caches2;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 using JetBrains.ReSharper.Psi.Impl;
@@ -19,10 +21,11 @@ namespace JetBrains.ReSharper.Plugins.Unity.Cg.Psi
     {
         private readonly CommonIdentifierIntern myIntern;
 
-        public CgLanguageService(PsiLanguageType psiLanguageType, IConstantValueService constantValueService, CommonIdentifierIntern intern)
+        public CgLanguageService(PsiLanguageType psiLanguageType, IConstantValueService constantValueService, CommonIdentifierIntern intern, CgCodeFormatter formatter)
             : base(psiLanguageType, constantValueService)
         {
             myIntern = intern;
+            CodeFormatter = formatter;
         }
 
         public override ILexerFactory GetPrimaryLexerFactory()
@@ -52,6 +55,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Cg.Psi
         public override bool SupportTypeMemberCache => false;
 
         public override ITypePresenter TypePresenter => DefaultTypePresenter.Instance;
+
+        public override ICodeFormatter CodeFormatter { get; }
 
         private class CgLexerFactory : ILexerFactory
         {

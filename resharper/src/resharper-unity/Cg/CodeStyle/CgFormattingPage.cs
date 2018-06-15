@@ -15,7 +15,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Cg.CodeStyle
         ParentId = CgPage.PID)]
     public class CgFormattingPage : CodeStylePage
     {
-        public CgFormattingPage([NotNull] Lifetime lifetime, [NotNull] IContextBoundSettingsStoreLive smartContext, [NotNull] IUIApplication environment, [NotNull] ICodeStylePageSchema schema, [NotNull] CodeStylePreview preview)
+        public CgFormattingPage([NotNull] Lifetime lifetime, [NotNull] OptionsSettingsSmartContext smartContext, [NotNull] IUIApplication environment, [NotNull] CgFormattingPageSchema schema, [NotNull] CodeStylePreview preview)
             : base(lifetime, smartContext, environment, schema, preview)
         {
         }

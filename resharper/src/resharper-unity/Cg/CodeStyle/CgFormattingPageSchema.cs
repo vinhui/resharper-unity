@@ -13,8 +13,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Cg.CodeStyle
     [FormattingSettingsPresentationComponent]
     public class CgFormattingPageSchema : IndentStylePageSchema<CgCodeFormattingSettingsKey, CgCodeStylePreview>
     {
-        public CgFormattingPageSchema([NotNull] Lifetime lifetime, [NotNull] IContextBoundSettingsStoreLive smartContext, [NotNull] IValueEditorViewModelFactory itemViewModelFactory, [NotNull] IComponentContainer container, ISettingsToHide settingsToHide)
-            : base(lifetime, smartContext, itemViewModelFactory, container, settingsToHide)
+        public CgFormattingPageSchema([NotNull] Lifetime lifetime, [NotNull] IContextBoundSettingsStoreLive smartContext, [NotNull] IValueEditorViewModelFactory itemViewModelFactory, [NotNull] IComponentContainer container, ISettingsToHide settingsToHide): base(lifetime, smartContext, itemViewModelFactory, container, settingsToHide)
         {
         }
 
