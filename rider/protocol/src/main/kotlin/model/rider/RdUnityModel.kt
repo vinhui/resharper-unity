@@ -3,6 +3,7 @@ package model.rider
 import com.jetbrains.rider.model.nova.ide.SolutionModel
 import com.jetbrains.rider.generator.nova.*
 import com.jetbrains.rider.generator.nova.PredefinedType.*
+import com.jetbrains.rider.model.nova.ide.SolutionModel.HighlighterModel
 
 @Suppress("unused")
 object RdUnityModel : Ext(SolutionModel.Solution) {
@@ -17,6 +18,10 @@ object RdUnityModel : Ext(SolutionModel.Solution) {
         +"ConnectedIdle"
         +"ConnectedPlay"
         +"ConnectedRefresh"
+    }
+
+    private val UnityPerformanceHiglighterModel = structdef extends HighlighterModel {
+
     }
 
     init {
