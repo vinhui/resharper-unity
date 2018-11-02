@@ -4,6 +4,7 @@ import com.intellij.ide.GeneralSettings
 import com.intellij.ide.impl.ProjectUtil
 import com.intellij.openapi.project.Project
 import com.jetbrains.rdclient.util.idea.LifetimedProjectComponent
+import com.jetbrains.rider.model.UnitTestLaunchPreference
 import com.jetbrains.rider.model.rdUnityModel
 import com.jetbrains.rider.plugins.unity.editorPlugin.model.RdLogEvent
 import com.jetbrains.rider.plugins.unity.editorPlugin.model.RdLogEventMode
@@ -36,10 +37,15 @@ class UnityHost(project: Project) : LifetimedProjectComponent(project) {
         }
 
         val generalSettings = GeneralSettings.getInstance()
-        if (generalSettings.isAutoSaveIfInactive || generalSettings.isSaveOnFrameDeactivation)
-            model.isRiderAutoSaveEnabled.set(true)
-        else
-            model.isRiderAutoSaveEnabled.set(false)
+        model.sessionInitialized.advise(componentLifetime){ isConnected ->
+            if(isConnected)
+            {
+                if (generalSettings.isAutoSaveIfInactive || generalSettings.isSaveOnFrameDeactivation)
+                    model.isRiderAutoSaveEnabled.set(true)
+                else
+                    model.isRiderAutoSaveEnabled.set(false)
+            }
+        }
     }
 
     companion object {
