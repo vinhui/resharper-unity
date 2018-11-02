@@ -114,8 +114,6 @@ namespace JetBrains.Rider.Unity.Editor
       if (!RiderScriptableSingleton.Instance.CsprojProcessedOnce)
       {
         EditorApplication.update += SyncSolutionOnce;
-        
-        RiderScriptableSingleton.Instance.CsprojProcessedOnce = true;
       }
 
       var lifetimeDefinition = Lifetimes.Define(EternalLifetime.Instance);
@@ -165,6 +163,7 @@ namespace JetBrains.Rider.Unity.Editor
     {
       ourLogger.Verbose("Call SyncSolution once per Unity process.");
       UnityUtils.SyncSolution();
+      RiderScriptableSingleton.Instance.CsprojProcessedOnce = true;
       EditorApplication.update -= SyncSolutionOnce;
     }
 
