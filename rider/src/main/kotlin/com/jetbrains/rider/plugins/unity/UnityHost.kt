@@ -1,5 +1,6 @@
 package com.jetbrains.rider.plugins.unity
 
+import com.intellij.ide.GeneralSettings
 import com.intellij.ide.impl.ProjectUtil
 import com.intellij.openapi.project.Project
 import com.jetbrains.rdclient.util.idea.LifetimedProjectComponent
@@ -33,6 +34,12 @@ class UnityHost(project: Project) : LifetimedProjectComponent(project) {
             val mode = RdLogEventMode.values()[it.mode]
             logSignal.fire(RdLogEvent(it.ticks, type, mode, it.message, it.stackTrace))
         }
+
+        val generalSettings = GeneralSettings.getInstance()
+        if (generalSettings.isAutoSaveIfInactive && generalSettings.isSaveOnFrameDeactivation)
+            model.isRiderAutoSaveEnabled.set(true)
+        else
+            model.isRiderAutoSaveEnabled.set(false)
     }
 
     companion object {
