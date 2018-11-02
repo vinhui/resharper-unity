@@ -10,19 +10,19 @@ namespace JetBrains.Rider.Unity.Editor
     public static void ShowAutoSaveNotificationIfAllowed()
     {
       if (RiderScriptableSingleton.Instance.AutoSaveWarningShownOnce) return;
-      
+
+      // https://docs.unity3d.com/Manual/Preferences.html
       var notification =
-       @"AutoSaving files in Rider may trigger recompilation when switching back to Unity Editor, which may wipe live data if the Unity player is running.
-       Consider changing <b>Script Changes While Playing</b> setting in Unity-Preferences-";
+        @"Auto save is enabled in Rider. This can cause unwanted recompilation and the loss of current state during play mode.
+Consider changing the <i>Script Changes While Playing</i> setting in Unity Preferences {0} tab.";
+      
       if (UnityUtils.UnityVersion >= new Version(2018, 2) && EditorPrefsWrapper.ScriptChangesDuringPlayOptions == 0)
       {
-        notification += "General";
-        Debug.LogWarning(notification);
+        Debug.LogWarning(string.Format(notification, "General"));
       }
       else if (UnityUtils.UnityVersion < new Version(2018, 2) && PluginSettings.AssemblyReloadSettings == AssemblyReloadSettings.RecompileAndContinuePlaying)
       {
-        notification += "Rider";
-        Debug.LogWarning(notification);
+        Debug.LogWarning(string.Format(notification, "Rider"));
       }
     }
   }
