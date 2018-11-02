@@ -36,7 +36,7 @@ class UnityHost(project: Project) : LifetimedProjectComponent(project) {
         }
 
         val generalSettings = GeneralSettings.getInstance()
-        if (generalSettings.isAutoSaveIfInactive && generalSettings.isSaveOnFrameDeactivation)
+        if (generalSettings.isAutoSaveIfInactive || generalSettings.isSaveOnFrameDeactivation)
             model.isRiderAutoSaveEnabled.set(true)
         else
             model.isRiderAutoSaveEnabled.set(false)

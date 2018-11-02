@@ -27,7 +27,7 @@ namespace JetBrains.Rider.Unity.Editor
   {
     internal static LoggingLevel SelectedLoggingLevel
     {
-      get => (LoggingLevel) EditorPrefs.GetInt("Rider_SelectedLoggingLevel", (int)LoggingLevel.WARN);
+      get => (LoggingLevel) EditorPrefs.GetInt("Rider_SelectedLoggingLevel", 0);
       private set
       {
         EditorPrefs.SetInt("Rider_SelectedLoggingLevel", (int) value);

@@ -9,7 +9,7 @@ namespace JetBrains.Rider.Unity.Editor
   {
     public static void ShowAutoSaveNotificationIfAllowed()
     {
-      if (RiderScriptableSingleton.Instance.AutoSaveWarningShownOnce || PluginSettings.SelectedLoggingLevel < LoggingLevel.WARN) return;
+      if (RiderScriptableSingleton.Instance.AutoSaveWarningShownOnce) return;
       
       var notification =
        @"AutoSaving files in Rider may trigger recompilation when switching back to Unity Editor, which may wipe live data if the Unity player is running.
