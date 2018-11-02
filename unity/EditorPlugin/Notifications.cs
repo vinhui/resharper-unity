@@ -10,7 +10,8 @@ namespace JetBrains.Rider.Unity.Editor
     public static void ShowAutoSaveNotificationIfAllowed()
     {
       if (RiderScriptableSingleton.Instance.AutoSaveWarningShownOnce) return;
-
+      RiderScriptableSingleton.Instance.AutoSaveWarningShownOnce = true;
+      
       // https://docs.unity3d.com/Manual/Preferences.html
       var notification =
         @"Auto save is enabled in Rider. This can cause unwanted recompilation and the loss of current state during play mode.

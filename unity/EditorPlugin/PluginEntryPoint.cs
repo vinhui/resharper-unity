@@ -113,7 +113,7 @@ namespace JetBrains.Rider.Unity.Editor
       // process csproj files once per Unity process
       if (!RiderScriptableSingleton.Instance.CsprojProcessedOnce)
       {
-        EditorApplication.update +=SyncSolutionOnce;
+        EditorApplication.update += SyncSolutionOnce;
         
         RiderScriptableSingleton.Instance.CsprojProcessedOnce = true;
       }
