@@ -27,7 +27,7 @@ namespace JetBrains.Rider.Unity.Editor
   {
     internal static LoggingLevel SelectedLoggingLevel
     {
-      get => (LoggingLevel) EditorPrefs.GetInt("Rider_SelectedLoggingLevel", 0);
+      get => (LoggingLevel) EditorPrefs.GetInt("Rider_SelectedLoggingLevel", (int)LoggingLevel.WARN);
       private set
       {
         EditorPrefs.SetInt("Rider_SelectedLoggingLevel", (int) value);
@@ -155,12 +155,6 @@ namespace JetBrains.Rider.Unity.Editor
       private set { EditorPrefs.SetBool("Rider_LogEventsCollectorEnabled", value); }
     }
     
-    public static bool ShowAutoSaveWarning
-    {
-      get { return EditorPrefs.GetBool("Rider_ShowAutosaveWarning", true); }
-      private set { EditorPrefs.SetBool("Rider_ShowAutosaveWarning", value); }
-    }
-
     private static GUIStyle ourVersionInfoStyle = new GUIStyle()
     {
       normal = new GUIStyleState()
@@ -273,7 +267,6 @@ namespace JetBrains.Rider.Unity.Editor
       EditorGUILayout.HelpBox(loggingMsg, MessageType.None);
 
       LogEventsCollectorEnabled = EditorGUILayout.Toggle(new GUIContent("Pass Console to Rider"), LogEventsCollectorEnabled);
-      ShowAutoSaveWarning = EditorGUILayout.Toggle(new GUIContent("Warn about Rider AutoSave"), ShowAutoSaveWarning);
       EditorGUI.EndChangeCheck();
 
       if (UnityUtils.UnityVersion < new Version(2018, 2))
