@@ -154,7 +154,12 @@ namespace JetBrains.Rider.Unity.Editor
       get { return EditorPrefs.GetBool("Rider_LogEventsCollectorEnabled", true); }
       private set { EditorPrefs.SetBool("Rider_LogEventsCollectorEnabled", value); }
     }
-
+    
+    public static bool ShowAutoSaveWarning
+    {
+      get { return EditorPrefs.GetBool("Rider_ShowAutosaveWarning", true); }
+      private set { EditorPrefs.SetBool("Rider_ShowAutosaveWarning", value); }
+    }
 
     private static GUIStyle ourVersionInfoStyle = new GUIStyle()
     {
@@ -260,7 +265,6 @@ namespace JetBrains.Rider.Unity.Editor
         EditorGUILayout.HelpBox(helpLangVersion, MessageType.None);
       }
 
-
       var loggingMsg =
         @"Sets the amount of Rider Debug output. If you are about to report an issue, please select Verbose logging level and attach Unity console output to the issue.";
       SelectedLoggingLevel =
@@ -268,10 +272,8 @@ namespace JetBrains.Rider.Unity.Editor
           SelectedLoggingLevel);
       EditorGUILayout.HelpBox(loggingMsg, MessageType.None);
 
-      EditorGUI.EndChangeCheck();
       LogEventsCollectorEnabled = EditorGUILayout.Toggle(new GUIContent("Pass Console to Rider"), LogEventsCollectorEnabled);
-      EditorGUI.BeginChangeCheck();
-      
+      ShowAutoSaveWarning = EditorGUILayout.Toggle(new GUIContent("Warn about Rider AutoSave"), ShowAutoSaveWarning);
       EditorGUI.EndChangeCheck();
 
       if (UnityUtils.UnityVersion < new Version(2018, 2))

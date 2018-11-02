@@ -257,6 +257,13 @@ namespace JetBrains.Rider.Unity.Editor
           model.ApplicationContentsPath.SetValue(EditorApplication.applicationContentsPath);
           model.ApplicationVersion.SetValue(Application.unityVersion);
           model.ScriptingRuntime.SetValue(UnityUtils.ScriptingRuntime);
+          
+          model.IsRiderAutoSaveEnabled.AdviseNotNull(connectionLifetime, b =>
+            {
+              if (b)
+                Notifications.ShowAutoSaveNotificationIfAllowed();
+            }
+          );
 
           ourLogger.Verbose("UnityModel initialized.");
           var pair = new ModelWithLifetime(model, connectionLifetime);

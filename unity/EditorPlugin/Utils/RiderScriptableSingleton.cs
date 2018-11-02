@@ -17,6 +17,17 @@ namespace JetBrains.Rider.Unity.Editor.Utils
         Save(true);
       }
     }
-
+    
+    [SerializeField] 
+    private bool myAutoSaveWarningShownOnce;
+    public bool AutoSaveWarningShownOnce
+    {
+      get => myAutoSaveWarningShownOnce;
+      set
+      {
+        myAutoSaveWarningShownOnce = value;
+        Save(true);
+      }
+    }
   }
 }
